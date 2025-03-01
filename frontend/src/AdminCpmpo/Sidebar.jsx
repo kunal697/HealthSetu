@@ -16,19 +16,7 @@ function Sidebar({ isOpen }) {
     {
       title: 'Dashboard',
       icon: <HomeIcon className="w-6 h-6" />,
-      path: '/admin/dashboard',
-      status: 'active'
-    },
-    {
-      title: 'Total Incidents',
-      icon: <ClipboardDocumentListIcon className="w-6 h-6" />,
-      path: '/admin/incidents',
-      status: 'active'
-    },
-    {
-      title: 'Notifications',
-      icon: <BellIcon className="w-6 h-6" />,
-      path: '/admin/notifications',
+      path: '/admin-dashboard',
       status: 'active'
     },
     {
