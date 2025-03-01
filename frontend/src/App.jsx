@@ -11,6 +11,7 @@ import Dashboard from "./pages/Dashboard";
 import Preloader from "./components/Preloader";
 import { AuthProvider } from "./context/AuthContext";
 import AdminPage from "./pages/AdminPage";
+import TalkAI from "./TalkAI";
 function App() {
   const [loading, setLoading] = useState(true);
 
@@ -40,6 +41,7 @@ function App() {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/login" element={<LoginForm />} />
               <Route path="/register" element={<Signup />} />
+              <Route path="/talk" element={<TalkAI />} />
             </Routes>
           </Router>
         </AuthProvider>
