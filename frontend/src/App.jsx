@@ -26,6 +26,7 @@ import FitbitData from './pages/FitbitData';
 import DoctorProfile from './pages/DoctorProfile';
 import Medicine from './pages/Medicine';
 import MaintenancePage from './DashBoardCompo/MaintenancePage';
+import ConnectCallback from './pages/ConnectCallback';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -75,7 +76,8 @@ function App() {
               <Route path="/fitbit-data" element={<FitbitData />} />
               <Route path="/doctor-profile" element={<DoctorProfile />} />
               <Route path="/medicine" element={<Medicine />} />
-              <Route path="/maintenance" element={<MaintenancePage />} />
+              <Route path="/maintenance" element={<MaintenancePage />} />
+              <Route path="/connect" element={<ConnectCallback />} />
             </Routes>
           </Router>
         </AuthProvider>
