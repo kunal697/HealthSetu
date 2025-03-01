@@ -10,12 +10,12 @@ import Header from './components/Header';
 import Dashboard from "./pages/Dashboard";
 import Preloader from "./components/Preloader";
 import { AuthProvider } from "./context/AuthContext";
-
+import AdminPage from "./pages/AdminPage";
 function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate initial loading or do actual data fetching
+  
     const timer = setTimeout(() => {
       setLoading(false);
     }, 2000);
@@ -36,6 +36,7 @@ function App() {
             <Header />
             <Routes>
               <Route path="/" element={<HomePage />} />
+              <Route path="/admin" element={<AdminPage />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/login" element={<LoginForm />} />
               <Route path="/register" element={<Signup />} />
