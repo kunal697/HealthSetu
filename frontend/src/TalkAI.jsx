@@ -1,19 +1,30 @@
 import { jwtDecode } from "jwt-decode";
 import React, { useState, useEffect } from "react";
 import Test from './components/Test';
+import { useNavigate } from "react-router-dom";
 
 let recognition;
 
 const TalkAI = () => {
+    const navigate = useNavigate();
     const [isListening, setIsListening] = useState(false);
     const [isSpeaking, setIsSpeaking] = useState(false);
     const [report, setReport] = useState(null);
     const [sessionId] = useState(() => Math.random().toString(36).substring(2, 15));
-    const token = localStorage.getItem("token");
-    const decode = jwtDecode(token);
-    const patientId = decode.user._id;
     const [appointmentId, setAppointmentId] = useState(null);
-    console.log(patientId);
+  
+    let token;
+    useEffect(() => {
+        token = localStorage.getItem("token");
+        if (!token) {
+            console.log("No token found");
+            navigate('/login');
+        }
+        const decode = jwtDecode(token);
+        const patientId = decode.user._id;
+    }, [navigate]);
+    
+   
 
     useEffect(() => {
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -44,7 +55,7 @@ const TalkAI = () => {
     const startConversation = async () => {
         try {
             console.log("Starting conversation..."); // Debug log
-            const response = await fetch("http://localhost:5000/api/appointments/start", {
+            const response = await fetch("https://hm-0023-mle.vercel.app/api/appointments/start", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -69,7 +80,7 @@ const TalkAI = () => {
 
     const handleSendMessage = async (text) => {
         try {
-            const response = await fetch("http://localhost:5000/api/appointments/talk", {
+            const response = await fetch("https://hm-0023-mle.vercel.app/api/appointments/talk", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
