@@ -29,6 +29,7 @@ import ConnectCallback from './pages/ConnectCallback';
 import CreatePrescription from "./Prescription/CreatePrescription";
 import Prescription from "./PatientInfoDoc/Prescriptions";
 import PatientPrescriptions from './pages/PatientPrescriptions';
+import ReportAI from "./pages/ReportAI";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -75,6 +76,9 @@ const App = () => {
             <Route path="/maintenance" element={<MaintenancePage />} />
             <Route path="/connect" element={<ConnectCallback />} />
             <Route path="/patient-prescriptions/:id" element={<PatientPrescriptions />} />
+
+
+            <Route path="/report-ai" element={<ReportAI />} />
           </Routes>
         </AuthProvider>
       </Suspense>
