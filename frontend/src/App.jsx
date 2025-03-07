@@ -29,6 +29,7 @@ import ConnectCallback from './pages/ConnectCallback';
 import CreatePrescription from "./Prescription/CreatePrescription";
 import Prescription from "./PatientInfoDoc/Prescriptions";
 import PatientPrescriptions from './pages/PatientPrescriptions';
+import DemandForecast from "./Inventory/DemandForecast";
 import ReportAI from "./pages/ReportAI";
 
 const App = () => {
@@ -68,6 +69,7 @@ const App = () => {
             <Route path="/admin/inventory/add-item" element={<AddItems />} />
             <Route path="/admin/inventory/low-stock" element={<LowStockItems />} />
             <Route path="/admin/inventory/stock-analytics" element={<StockAnalytics />} />
+            <Route path="/admin/inventory/forecast" element={<DemandForecast />} />
 
             <Route path="/PAppointments" element={<PAppointments />} />
             <Route path="/fitbit-data" element={<FitbitData />} />
