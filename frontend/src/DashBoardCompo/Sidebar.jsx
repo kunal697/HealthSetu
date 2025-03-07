@@ -61,12 +61,6 @@ function Sidebar({ isOpen, setIsOpen }) {
       icon: <UserIcon className="w-6 h-6" />,
       path: '/doctor-profile',
       status: 'active'
-    },
-    {
-      title: 'Report AI',
-      icon: <UserIcon className="w-6 h-6" />,
-      path: '/report-ai',
-      status: 'active'
     }
   ];
 

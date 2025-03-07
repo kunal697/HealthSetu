@@ -30,60 +30,122 @@ import CreatePrescription from "./Prescription/CreatePrescription";
 import Prescription from "./PatientInfoDoc/Prescriptions";
 import PatientPrescriptions from './pages/PatientPrescriptions';
 import DemandForecast from "./Inventory/DemandForecast";
-import ReportAI from "./pages/ReportAI";
+import NotFound from './pages/NotFound';
 
-const App = () => {
-  const [loading, setLoading] = useState(true);
+const CustomCursor = () => {
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [clicking, setClicking] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2000);
+    let mouseX = 0;
+    let mouseY = 0;
+    let cursorX = 0;
+    let cursorY = 0;
+    let speed = 0.9; // Adjust for smoother movement
 
-    return () => clearTimeout(timer);
+    const updatePosition = (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    };
+
+    const handleMouseDown = () => setClicking(true);
+    const handleMouseUp = () => setClicking(false);
+
+    const animate = () => {
+      // Smooth interpolation
+      cursorX += (mouseX - cursorX) * speed;
+      cursorY += (mouseY - cursorY) * speed;
+      
+      setPosition({ x: cursorX, y: cursorY });
+      requestAnimationFrame(animate);
+    };
+
+    window.addEventListener('mousemove', updatePosition);
+    window.addEventListener('mousedown', handleMouseDown);
+    window.addEventListener('mouseup', handleMouseUp);
+
+    animate(); // Start the animation loop
+
+    return () => {
+      window.removeEventListener('mousemove', updatePosition);
+      window.removeEventListener('mousedown', handleMouseDown);
+      window.removeEventListener('mouseup', handleMouseUp);
+    };
   }, []);
 
   return (
+    <>
+      <div
+        className={`custom-cursor ${clicking ? 'clicking' : ''}`}
+        style={{
+          left: `${position.x}px`,
+          top: `${position.y}px`
+        }}
+      />
+      <div
+        className="custom-cursor-follower"
+        style={{
+          left: `${position.x}px`,
+          top: `${position.y}px`
+        }}
+      />
+    </>
+  );
+};
+
+const App = () => {
+  const [globalLoading, setGlobalLoading] = useState(true); // Start with loading true
+
+  useEffect(() => {
+    // Hide preloader after initial load
+    const timer = setTimeout(() => {
+      setGlobalLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []); // Only run once on mount
+
+  return (
     <Router>
-      <Suspense fallback={null}>
-        <Preloader />
-        <AuthProvider>
-          <ToastContainer position="top-right" autoClose={3000} />
-          <Header />
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/admin-dashboard" element={<AdminPage />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/docdashboard" element={<DocDashbaord />} />
-            <Route path="/doc-patients-health/:id" element={<DocPatientshealth />} />
-            <Route path="/login" element={<LoginForm />} />
-            <Route path="/register" element={<Signup />} />
-            <Route path="/about" element={<AboutPage/>} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/talk" element={<TalkAI />} />
-            <Route path="/appointments" element={<Appointments />} />
-            <Route path="/createprescription/:patientId" element={<CreatePrescription />} />
-            {/* Inventory route */}
-
-            <Route path="/admin/inventory/" element={<InventoryDashboard />} />
-            <Route path="/admin/inventory/add-item" element={<AddItems />} />
-            <Route path="/admin/inventory/low-stock" element={<LowStockItems />} />
-            <Route path="/admin/inventory/stock-analytics" element={<StockAnalytics />} />
-            <Route path="/admin/inventory/forecast" element={<DemandForecast />} />
-
-            <Route path="/PAppointments" element={<PAppointments />} />
-            <Route path="/fitbit-data" element={<FitbitData />} />
-            <Route path="/doctor-profile" element={<DoctorProfile />} />
-            <Route path="/medicine" element={<Medicine />} />
-            <Route path="/maintenance" element={<MaintenancePage />} />
-            <Route path="/connect" element={<ConnectCallback />} />
-            <Route path="/patient-prescriptions/:id" element={<PatientPrescriptions />} />
-
-
-            <Route path="/report-ai" element={<ReportAI />} />
-          </Routes>
-        </AuthProvider>
-      </Suspense>
+      <div className="relative">
+        <Suspense fallback={null}>
+          {globalLoading && <Preloader />}
+          <AuthProvider>
+            <ToastContainer position="top-right" autoClose={3000} />
+            <CustomCursor />
+            <div className={globalLoading ? 'hidden' : 'block'}>
+              <Header />
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/admin-dashboard" element={<AdminPage />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/docdashboard" element={<DocDashbaord />} />
+                <Route path="/doc-patients-health/:id" element={<DocPatientshealth />} />
+                <Route path="/login" element={<LoginForm />} />
+                <Route path="/register" element={<Signup />} />
+                <Route path="/about" element={<AboutPage/>} />
+                <Route path="/contact" element={<ContactPage />} />
+                <Route path="/talk" element={<TalkAI />} />
+                <Route path="/appointments" element={<Appointments />} />
+                <Route path="/createprescription/:patientId" element={<CreatePrescription />} />
+                <Route path="/admin/inventory/" element={<InventoryDashboard />} />
+                <Route path="/admin/inventory/add-item" element={<AddItems />} />
+                <Route path="/admin/inventory/low-stock" element={<LowStockItems />} />
+                <Route path="/admin/inventory/stock-analytics" element={<StockAnalytics />} />
+                <Route path="/admin/inventory/forecast" element={<DemandForecast />} />
+                <Route path="/PAppointments" element={<PAppointments />} />
+                <Route path="/fitbit-data" element={<FitbitData />} />
+                <Route path="/doctor-profile" element={<DoctorProfile />} />
+                <Route path="/medicine" element={<Medicine />} />
+                <Route path="/maintenance" element={<MaintenancePage />} />
+                <Route path="/connect" element={<ConnectCallback />} />
+                <Route path="/patient-prescriptions/:id" element={<PatientPrescriptions />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </div>
+          </AuthProvider>
+        </Suspense>
+      </div>
     </Router>
   );
 };
