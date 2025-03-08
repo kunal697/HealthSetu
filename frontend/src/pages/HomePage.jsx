@@ -1,18 +1,19 @@
-import { motion, useAnimation } from 'framer-motion'
-import { useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
+import { useEffect, useState, useMemo } from 'react'
 import Features from "../components/Features"
 import Footer from "../components/Footer"
 import GetInvolved from "../components/GetInvolved"
 import Header from "../components/Header"
 import HeroSection from "../components/HeroSection"
+import Testimonials from "../components/Testimonials"
 import { useNavigate } from "react-router-dom"
 
-// Replace the medicalIcons array with medical emojis
+// Move particles outside for better performance
 const medicalEmojis = ["💊", "💉", "🏥", "🩺", "🧬", "⚕️", "🩹", "💗"];
 
 const ParticlesBackground = () => {
   return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden">
+    <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
       {/* Fast Moving Medical Icons */}
       {[...Array(20)].map((_, i) => {
         const randomX = Math.random() * window.innerWidth;
@@ -129,79 +130,96 @@ const ParticlesBackground = () => {
   );
 };
 
-const HomePage = ({ loading }) => {
-    const navigate = useNavigate();
+const HomePage = () => {
+  const navigate = useNavigate();
 
-    const handleAppointmentClick = (e) => {
-        e.preventDefault();
-        const token = localStorage.getItem("token");
-        if (!token) {
-            navigate('/login');
-        } else {
-            navigate('/talk');
-        }
-    };
-
-    // If loading, only show the main content without banner and appointment button
-    if (loading) {
-        return (
-            <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
-                <main className="relative">
-                    <HeroSection />
-                    <Features />
-                    <GetInvolved />
-                </main>
-                <Footer />
-            </div>
-        );
+  const handleAppointmentClick = useMemo(() => (e) => {
+    e.preventDefault();
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate('/login');
+    } else {
+      navigate('/talk');
     }
+  }, [navigate]);
 
-    return (
-        <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
-            {/* Add the particles background */}
-            <ParticlesBackground />
-            
-            {/* Emergency Banner */}
-            <div className="bg-blue-500 text-white py-2 text-center text-sm font-medium mt-16">
-                <p>🤖 AI-Powered Appointment Booking: Fast & Efficient</p>
-            </div>
-            
-            <main className="relative">
-                <HeroSection />
-                <motion.section
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                    className="py-20"
-                >
-                    <Features />
-                </motion.section>
-                <motion.section
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                    className="py-16 bg-blue-50"
-                >
-                    <GetInvolved />
-                </motion.section>
-            </main>
+  return (
+    <div className="relative min-h-screen bg-gradient-to-b from-blue-50/50 via-white to-blue-50/30">
+      {/* Background Particles */}
+      <ParticlesBackground />
+      
+      {/* Main Content */}
+      <div className="relative z-10">
+        {/* Announcement Banner */}
+        <motion.div 
+          initial={{ y: -100 }}
+          animate={{ y: 0 }}
+          className="bg-gradient-to-r from-blue-600 to-blue-500 text-white py-3 text-center text-sm font-medium"
+        >
+          <p className="flex items-center justify-center gap-2">
+            🎉 AI-Powered Healthcare: Experience the Future of Medical Care
+          </p>
+        </motion.div>
 
-            <Footer />
+        {/* Hero Section with increased height */}
+        <section className="min-h-[90vh] relative">
+          <HeroSection />
+        </section>
 
-            {/* Emergency Float Button */}
-            <motion.div
-                onClick={handleAppointmentClick}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                whileHover={{ scale: 1.05 }}
-                className="fixed bottom-6 right-6 bg-blue-500 text-white px-6 py-3 rounded-full shadow-lg hover:bg-blue-600 transition-all z-50 flex items-center gap-2 cursor-pointer"
-            >
-                <span className="animate-pulse">📅</span> Book Appointment
-            </motion.div>
-        </div>
-    )
-}
+        {/* Features Section with offset background */}
+        <section className="relative z-20 -mt-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-white/80 backdrop-blur-sm py-24 rounded-t-[3rem] shadow-lg"
+          >
+            <Features />
+          </motion.div>
+        </section>
 
-export default HomePage
+        {/* Testimonials Section with gradient background */}
+        <section className="relative z-10 -mt-10">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="py-20"
+          >
+            <Testimonials />
+          </motion.div>
+        </section>
+
+        {/* Get Involved Section with curved edges */}
+        <section className="relative z-20 -mt-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-gradient-to-b from-blue-50/80 to-white rounded-t-[3rem] py-24"
+          >
+            <GetInvolved />
+          </motion.div>
+        </section>
+
+        {/* Footer with enhanced styling */}
+        <Footer className="relative z-10 bg-gradient-to-b from-gray-50 to-gray-100" />
+      </div>
+
+      {/* Floating Action Button */}
+      <motion.button 
+        onClick={handleAppointmentClick}
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        whileHover={{ scale: 1.05 }}
+        className="fixed bottom-8 right-8 z-50 bg-gradient-to-r from-blue-600 to-blue-500 text-white 
+                   px-6 py-3 rounded-full shadow-lg hover:shadow-blue-500/25 
+                   transition-all flex items-center gap-2"
+      >
+        <span className="animate-pulse">📅</span> Book Appointment
+      </motion.button>
+    </div>
+  );
+};
+
+export default HomePage;

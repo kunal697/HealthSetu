@@ -32,11 +32,11 @@ function Features() {
   ];
 
   return (
-    <section className="py-24 relative overflow-hidden bg-gradient-to-b from-blue-100 to-white">
-      {/* Background Pattern - Darker dots */}
-      <div className="absolute inset-0 bg-[radial-gradient(#1e40af_1px,transparent_1px)] [background-size:16px_16px] opacity-[0.2]" />
+    <section className="py-24 relative overflow-hidden bg-white/90 backdrop-blur-sm">
+      {/* Background Pattern - Darker dots with lower z-index */}
+      <div className="absolute inset-0 bg-[radial-gradient(#1e40af_1px,transparent_1px)] [background-size:16px_16px] opacity-[0.2] z-0" />
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}

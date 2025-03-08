@@ -48,6 +48,7 @@
 /* Smooth Scrolling */
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
@@ -189,4 +190,237 @@ a, button, input[type="button"], input[type="submit"] {
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: #1A8EFD transparent;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+
+/* Add to your existing CSS */
+@keyframes marquee-vertical {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+.animate-marquee-vertical {
+  animation: marquee-vertical var(--speed) linear infinite;
+}
+
+/* Update the testimonial mask for better visibility */
+.testimonial-mask {
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 15%,
+    black 85%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 15%,
+    black 85%,
+    transparent 100%
+  );
+}
+
+/* Add smooth scroll behavior */
+.smooth-scroll {
+  scroll-behavior: smooth;
+}
+
+/* Optimize animations */
+.transform-gpu {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* Smooth transitions */
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+/* Enhanced 3D effects */
+.transform-gpu {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* Improved testimonial mask */
+.testimonial-mask {
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 15%,
+    black 85%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 15%,
+    black 85%,
+    transparent 100%
+  );
+}
+
+/* Enhanced card hover effect */
+.card-3d-hover {
+  transition: all 0.3s ease;
+  transform-style: preserve-3d;
+}
+
+.card-3d-hover:hover {
+  transform: rotateX(5deg) rotateY(5deg) scale(1.05);
+}
+
+/* Smooth animations */
+* {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 3D Transform Styles */
+.transform-gpu {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* Smooth transitions */
+.transition-transform {
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+/* Card hover effects */
+.hover-card {
+  transition: all 0.3s ease;
+  transform-style: preserve-3d;
+}
+
+.hover-card:hover {
+  transform: translateZ(20px);
+  box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.15);
+}
+
+/* Smooth section transitions */
+section {
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Better gradient transitions */
+.gradient-transition {
+  transition: background-position 0.3s ease-in-out;
+  background-size: 200% 200%;
+}
+
+/* Improved shadows */
+.shadow-enhanced {
+  box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.1);
+}
+
+/* Smooth infinite scroll */
+@keyframes scroll {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+/* Enhanced 3D perspective */
+.perspective-container {
+  perspective: 1000px;
+  perspective-origin: center;
+}
+
+/* Smooth card transitions */
+.testimonial-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+/* Gradient mask for smooth edges */
+.gradient-mask {
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+}
+
+/* Interactive button effects */
+@keyframes pulse-blue {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 15px rgba(59, 130, 246, 0);
+  }
+}
+
+.interactive-btn {
+  position: relative;
+  isolation: isolate;
+}
+
+.interactive-btn::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  background: linear-gradient(
+    45deg,
+    #60a5fa,
+    #3b82f6,
+    #2563eb
+  );
+  filter: blur(10px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.interactive-btn:hover::before {
+  opacity: 1;
+}
+
+/* Smooth transitions */
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
 }
