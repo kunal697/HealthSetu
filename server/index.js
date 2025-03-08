@@ -14,9 +14,9 @@ connectDB();
 
 // Configure CORS before other middleware
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://localhost:5000'],
+  origin: ['http://localhost:5000', 'http://localhost:5173','https://healthsetu.netlify.app'], // Allow both ports
   credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  methods: ['GET', 'POST', 'OPTIONS','PUT','DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
@@ -45,7 +45,7 @@ app.use('/api/healthpros', require('./routes/healthproRoutes'));
 app.use('/api/caregivers', require('./routes/careGiverRoutes'));
 app.use('/api/appointments', require('./routes/appoinmentRoutes'));
 app.use('/api/goals', require('./routes/goalRoutes'));
-app.use('/api/inventory', require('./routes/InventoryRoutes'));
+app.use('/api/inventory', require('./routes/inventoryRoutes'));
 app.use('/api/fitbit', require('./routes/fitbitRoutes'));
 app.use('/api/prescriptions', require('./routes/prescriptionRoutes'));
 app.use('/api/report-ai', require('./routes/reportAIRoutes'));
