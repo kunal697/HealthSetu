@@ -52,10 +52,7 @@ app.use('/api/report-ai', require('./routes/reportAIRoutes'));
 app.use('/api/distributions', require('./routes/distributionRoutes'));
 
 // Make sure uploads directory exists
-const uploadDir = 'uploads';
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir);
-}
+
 
 app.post("/api/email", async (req, res) => {
   const { to, subject, text } = req.body;
