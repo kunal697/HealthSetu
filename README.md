@@ -2,9 +2,29 @@
 
 Theme : Healthcare
 
-Problem statement title : Design and Implementation of an Integrated Healthcare Management System for Efficient Patient Care and Hospital Operations
-
 Problem statement : Healthcare institutions require efficient systems to manage patient care, doctor schedules, and administrative tasks. Implementing role-based dashboards for patients, doctors, and administrators can streamline workflows and improve communication. A smart queuing system for doctor-patient appointments ensures efficient scheduling, reducing waiting times. Additionally, inventory management is crucial for maintaining adequate stock levels of medical supplies, while automated medicine reminders enhance patient adherence to prescribed treatments. The objective is to design an integrated healthcare management system that optimizes hospital operations and enhances patient care.
+
+## 📑 Table of Contents
+
+- [What is HealthSetu](#what-is-healthsetu)
+- [How We Solve the Problem](#how-we-solve-the-problem)
+- [Inspiration](#inspiration)
+- [What It Does](#what-it-does)
+- [✨ Key Features](#️-key-features)
+  - [For Patient](#for-patient)
+  - [For Doctor](#for-doctor)
+  - [For Admin](#for-admin)
+- [User Access](#user-access)
+- [Dashboards](#dashboards)
+  - [Patient Dashboard](#patient-dashboard)
+  - [Doctor Dashboard](#doctor-dashboard)
+  - [Admin Dashboard](#admin-dashboard)
+- [Live demo link](#live-demo-link)
+- [Testing](#testing)
+- [🛠️ Tech Stack](#️-tech-stack)
+- [🚀 Getting Started Locally](#-getting-started-locally)
+
+
 
 ## What is HealthSetu?
 HealthSetu is an integrated healthcare management platform designed to streamline hospital operations and enhance patient care. It provides role-based dashboards for patients, doctors, and administrators, ensuring efficient workflow and improved communication.A smart queuing system optimizes doctor-patient scheduling, reducing waiting times and enhancing hospital efficiency.
@@ -35,6 +55,31 @@ HealthSetu is an integrated healthcare management platform that enhances patient
   - Doctors 
   - Admin 
 
+## ✨ Key Features
+
+
+### For Patient:
+- PWA (progressive web application) feature for patient to download our website as moblie application.
+- Track real time health data with fitbit.
+- Book appointments using an AI voice assistant.
+- Receive automated medicine reminders for timely adherence.
+- AI For explaning reports
+- Personal Doctor
+
+### For Doctor:
+- Access patient records and medical history.
+- Access patients real time health data for efficient monitoring.
+- View and manage appointments and medical reminders of patient efficiently.
+- Smart automatic prescription generation. 
+
+### For Admin:
+- Assign doctors to patients based on availability.
+- Manage hospital inventory (add, update, delete stock).
+- Monitor hospital-wide operations and optimize resource allocation.
+- Medicine demand forecasting using patient data insights.
+- Smart logistics and distribution network between hospitals.
+
+----------------------------------------------------------------------------------------------------------------------------------------
 
 ## User Access
 Users can log in in three ways: as a patient, doctor, or admin.
@@ -87,57 +132,28 @@ https://healthsetu.netlify.app/
 
 
 ## Testing
-For testing, use the following credentials:
 
-**Patient Account:**
-- Email: sushant.joshilkar22@pccoepune.org
-- Password: @sushant04
+| Role             | Email                                      | Password    |
+|------------------|--------------------------------------------|-------------|
+| **Patient**      | sushant.joshilkar22@pccoepune.org           | @sushant04  |
+| **Doctor**       | kunalbodke25@gmail.com                     | @kunal04    |
+| **Admin**        | anujjadhav@gmail.com                       | @anuj04     |
 
-**Doctor Account:**
-- Email: kunalbodke25@gmail.com
-- Password: @kunal04
-
-**Admin Account:**
-- Email: anujjadhav@gmail.com
-- Password: @anuj04
 
 
 ## 🛠️ Tech Stack
-### Frontend:
-- React.js
-- Tailwind CSS
-- Daisy UI
 
-### Backend:
-- Node.js
-- Express.js
-- JWT Authentication
-- MongoDB
-- Python
+| **Category**  | **Technologies**                                    | **Description**                                   |
+|---------------|-----------------------------------------------------|---------------------------------------------------|
+| **Frontend**  | ⚛️ React.js                                         | JavaScript library for building UI               |
+|               | 🎨 Tailwind CSS                                     | Utility-first CSS framework                      |
+|               | 🌼 Daisy UI                                         | Tailwind CSS-based component library             |
+| **Backend**   | 🟢 Node.js                                          | JavaScript runtime for backend                   |
+|               | ⚙️ Express.js                                       | Web framework for Node.js                        |
+|               | 🔐 JWT Authentication                               | Secure user authentication                       |
+|               | 🍃 MongoDB                                          | NoSQL database                                   |
+|               | 🐍 Python                                           | Used for AI & ML modules                         |
 
-## ✨ Key Features
-
-
-### For Patient:
-- PWA (progressive web application) feature for patient to download our website as moblie application.
-- Track real time health data with fitbit.
-- Book appointments using an AI voice assistant.
-- Receive automated medicine reminders for timely adherence.
-- AI For explaning reports
-- Personal Doctor
-
-### For Doctor:
-- Access patient records and medical history.
-- Access patients real time health data for efficient monitoring.
-- View and manage appointments and medical reminders of patient efficiently.
-- Smart automatic prescription generation. 
-
-### For Admin:
-- Assign doctors to patients based on availability.
-- Manage hospital inventory (add, update, delete stock).
-- Monitor hospital-wide operations and optimize resource allocation.
-- Medicine demand forecasting using patient data insights.
-- Smart logistics and distribution network between hospitals.
 
 
 ## 🚀 Getting Started Locally
