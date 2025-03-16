@@ -1,8 +1,4 @@
-# HM0023 MLE
-
-
 ## Problem Statement
-Problem Statement ID - PS005
 
 Theme : Healthcare
 
@@ -117,6 +113,7 @@ For testing, use the following credentials:
 - Express.js
 - JWT Authentication
 - MongoDB
+- Python
 
 ## ✨ Key Features
 
@@ -126,16 +123,21 @@ For testing, use the following credentials:
 - Track real time health data with fitbit.
 - Book appointments using an AI voice assistant.
 - Receive automated medicine reminders for timely adherence.
+- AI For explaning reports
+- Personal Doctor
 
 ### For Doctor:
 - Access patient records and medical history.
 - Access patients real time health data for efficient monitoring.
 - View and manage appointments and medical reminders of patient efficiently.
+- Smart automatic prescription generation. 
 
 ### For Admin:
 - Assign doctors to patients based on availability.
 - Manage hospital inventory (add, update, delete stock).
-- Monitor hospital-wide operations and optimize resource allocation.  
+- Monitor hospital-wide operations and optimize resource allocation.
+- Medicine demand forecasting using patient data insights.
+- Smart logistics and distribution network between hospitals.
 
 
 ## 🚀 Getting Started Locally
